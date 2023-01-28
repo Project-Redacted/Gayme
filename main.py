@@ -7,6 +7,7 @@ from raycasting import *
 from object_renderer import *
 #from sprite_object import *
 from object_handler import *
+from pathfinding import *
 
 class Game:
     def __init__(self):
@@ -25,6 +26,7 @@ class Game:
         #self.static_sprites = SpriteObject(self)
         #self.animated_sprites = AnimatedSprite(self)
         self.object_handler = ObjectHandler(self)
+        self.pathfinding = PathFinding(self)
     
     def update(self):
         self.player.update()
