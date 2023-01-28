@@ -5,7 +5,6 @@ from map import *
 from player import *
 from raycasting import *
 from object_renderer import *
-#from sprite_object import *
 from object_handler import *
 from pathfinding import *
 
@@ -16,6 +15,7 @@ class Game:
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.clock = pg.time.Clock()
         self.delta_time = 1
+        self.level = spawn
         self.new_game()
 
     def new_game(self):
@@ -23,16 +23,13 @@ class Game:
         self.player = Player(self)
         self.object_renderer = ObjectRenderer(self)
         self.raycasting = RayCasting(self)
-        #self.static_sprites = SpriteObject(self)
-        #self.animated_sprites = AnimatedSprite(self)
         self.object_handler = ObjectHandler(self)
         self.pathfinding = PathFinding(self)
     
     def update(self):
+        self.map.update(self.level)
         self.player.update()
         self.raycasting.update()
-        #self.static_sprites.update()
-        #self.animated_sprites.update()
         self.object_handler.update()
         pg.display.flip()
         self.delta_time = self.clock.tick(FPS)
@@ -47,6 +44,8 @@ class Game:
             self.map.draw()
             self.player.draw()
         else:
+            pg.draw.rect(self.screen, FLOOR_COLOR, (0, HALF_HEIGHT, WIDTH, HALF_HEIGHT))
+            pg.draw.rect(self.screen, ROOF_COLOR, (0, 0, WIDTH, HALF_HEIGHT))
             self.object_renderer.draw()
         
     def check_events(self):
@@ -54,6 +53,12 @@ class Game:
             if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                 pg.quit()
                 sys.exit()
+                
+            if event.type == pg.KEYDOWN and event.key == pg.K_r:
+                if self.level == spawn:
+                    self.level = spawn_unlocked
+                else:
+                    self.level = spawn
     
     def run(self):
         while True:

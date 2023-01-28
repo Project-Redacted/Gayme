@@ -14,8 +14,8 @@ class ObjectHandler:
         self.npc_positions = {}
         
         # Sprite Map
-        add_sprite(SpriteObject(game))
-        add_sprite(AnimatedSprite(game))
+        #add_sprite(SpriteObject(game))
+        #add_sprite(AnimatedSprite(game))
         add_sprite(AnimatedSprite(game, path=self.animated_sprite_path + 'red_light/0.png', pos=(14.5, 5.5)))
         add_sprite(AnimatedSprite(game, path=self.animated_sprite_path + 'red_light/0.png', pos=(14.5, 7.5)))
         add_sprite(AnimatedSprite(game, path=self.animated_sprite_path + 'red_light/0.png', pos=(12.5, 7.5)))
@@ -27,7 +27,8 @@ class ObjectHandler:
         add_sprite(AnimatedSprite(game, path=self.animated_sprite_path + 'red_light/0.png', pos=(3.5, 18.5)))
         
         # NPC Map
-        add_npc(NPC(game))
+        #add_npc(NPC(game))
+        add_npc(NPC(game, path=self.npc_sprite_path + 'baller/0.png', pos=(14.5, 5.5), scale=0.6, shift=0.38))
         
         
     def update(self):

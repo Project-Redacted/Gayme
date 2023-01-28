@@ -1,4 +1,5 @@
 import math
+import sys
 
 # GAME SETTINGS
 RES = WIDTH, HEIGHT = 1600, 900
@@ -9,15 +10,18 @@ FPS = 0             # 0 = unlimited
 PLAYER_POS = 1.5, 5         # player position on the map
 PLAYER_ROT = 0
 PLAYER_SPEED = 0.002        # player speed
-PLAYER_ROT_SPEED = 0.004    # player rotation speed
+PLAYER_ROT_SPEED = 0.003    # player rotation speed
 PLAYER_SIZE_SCALE = 60
 
 MOUSE_SENSITIVITY = 0.0003
 MOUSE_MAX_SPEED = 40
-MOUSE_BORDER_LEFT = 100
+MOUSE_BORDER_LEFT = 200
 MOUSE_BORDER_RIGHT = WIDTH - MOUSE_BORDER_LEFT
+MOUSE_BORDER_TOP = 100
+MOUSE_BORDER_BOTTOM = HEIGHT - MOUSE_BORDER_TOP
 
 FLOOR_COLOR = (69, 69, 69)
+ROOF_COLOR = (50, 50, 50)
 
 FOV = math.pi / 3
 HALF_FOV = FOV / 2
@@ -36,3 +40,7 @@ HALF_TEXTURE_SIZE = TEXTURE_SIZE // 2
 # DEBUG SETTINGS
 DEBUG_MODE = False  # show debug info
 FISH_EYE_FIX = True # fix fish eye effect
+
+if len(sys.argv) > 1:
+    if sys.argv[1] == '-D':
+        DEBUG_MODE = True

@@ -91,7 +91,7 @@ class RayCasting():
                 
             # Draw the ray for debugging
             if DEBUG_MODE:
-                pg.draw.line(self.game.screen, 'blue', (ox * 100, oy * 100),
+                pg.draw.line(self.game.screen, 'yellow', (ox * 100, oy * 100),
                             (100 * ox + 100 * depth * cos_a, 100 * oy + 100 * depth * sin_a), 1)
             
             # Remove fish-eye effect

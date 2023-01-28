@@ -36,10 +36,10 @@ class Player:
         self.check_collision(dx, dy)
         
         # player rotation with arrow keys
-        #if keys[pg.K_LEFT]:
-        #    self.angle -= PLAYER_ROT_SPEED * self.game.delta_time
-        #if keys[pg.K_RIGHT]:
-        #    self.angle += PLAYER_ROT_SPEED * self.game.delta_time
+        if keys[pg.K_LEFT]:
+            self.angle -= PLAYER_ROT_SPEED * self.game.delta_time
+        if keys[pg.K_RIGHT]:
+            self.angle += PLAYER_ROT_SPEED * self.game.delta_time
         self.angle %= math.tau # tau = 2 * pi
     
     def check_wall(self, x, y):
@@ -68,7 +68,7 @@ class Player:
     
     def update(self):
         self.movement()
-        self.mouse_control()
+        #self.mouse_control()
         
     @property
     def pos(self):
