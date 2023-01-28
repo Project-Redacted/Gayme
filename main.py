@@ -5,6 +5,8 @@ from map import *
 from player import *
 from raycasting import *
 from object_renderer import *
+#from sprite_object import *
+from object_handler import *
 
 class Game:
     def __init__(self):
@@ -20,19 +22,30 @@ class Game:
         self.player = Player(self)
         self.object_renderer = ObjectRenderer(self)
         self.raycasting = RayCasting(self)
+        #self.static_sprites = SpriteObject(self)
+        #self.animated_sprites = AnimatedSprite(self)
+        self.object_handler = ObjectHandler(self)
     
     def update(self):
         self.player.update()
         self.raycasting.update()
+        #self.static_sprites.update()
+        #self.animated_sprites.update()
+        self.object_handler.update()
         pg.display.flip()
         self.delta_time = self.clock.tick(FPS)
-        pg.display.set_caption(f"FPS: {self.clock.get_fps() : 0.2f}")
+        if DEBUG_MODE:
+            pg.display.set_caption(f"Garbage Game - FPS: {self.clock.get_fps() : 0.2f} - Delta Time: {self.delta_time / 1000 : 0.2f}")
+        else:
+            pg.display.set_caption(f"Garbage Game")
         
     def draw(self):
-        #self.screen.fill('black')
-        self.object_renderer.draw()
-        #self.map.draw()
-        #self.player.draw()
+        if DEBUG_MODE:
+            self.screen.fill('black')
+            self.map.draw()
+            self.player.draw()
+        else:
+            self.object_renderer.draw()
         
     def check_events(self):
         for event in pg.event.get():

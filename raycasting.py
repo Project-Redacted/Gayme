@@ -38,7 +38,7 @@ class RayCasting():
         
         texture_vert, texture_horz = 1, 1
         
-        ray_angle = self.game.player.rot - HALF_FOV + 0.0001 # 0.0001 to avoid division by zero
+        ray_angle = self.game.player.angle - HALF_FOV + 0.0001 # 0.0001 to avoid division by zero
         for ray in range(NUM_RAYS):
             sin_a = math.sin(ray_angle)
             cos_a = math.cos(ray_angle)
@@ -90,11 +90,13 @@ class RayCasting():
                 offset = (1 - x_horz) if sin_a > 0 else x_horz
                 
             # Draw the ray for debugging
-            #pg.draw.line(self.game.screen, 'blue', (ox * 100, oy * 100),
-            #             (100 * ox + 100 * depth * cos_a, 100 * oy + 100 * depth * sin_a), 1)
+            if DEBUG_MODE:
+                pg.draw.line(self.game.screen, 'blue', (ox * 100, oy * 100),
+                            (100 * ox + 100 * depth * cos_a, 100 * oy + 100 * depth * sin_a), 1)
             
             # Remove fish-eye effect
-            depth *= math.cos(self.game.player.rot - ray_angle)
+            if FISH_EYE_FIX:
+                depth *= math.cos(self.game.player.angle - ray_angle)
             
             # Projection
             proj_height = SCREEN_DIST / (depth + 0.0001) # 0.0001 to avoid division by zero

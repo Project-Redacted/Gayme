@@ -6,12 +6,12 @@ class Player:
     def __init__(self, game):
         self.game = game
         self.x, self.y = PLAYER_POS
-        self.rot = PLAYER_ROT
+        self.angle = PLAYER_ROT
         
     def movement(self):
         # Initialize variables
-        sin_a = math.sin(self.rot)
-        cos_a = math.cos(self.rot)
+        sin_a = math.sin(self.angle)
+        cos_a = math.cos(self.angle)
         dx, dy = 0, 0
         player_speed = PLAYER_SPEED * self.game.delta_time
         player_speed_sin = player_speed * sin_a
@@ -35,12 +35,12 @@ class Player:
         # set player position
         self.check_collision(dx, dy)
         
-        # player rotation
-        if keys[pg.K_LEFT]:
-            self.rot -= PLAYER_ROT_SPEED * self.game.delta_time
-        if keys[pg.K_RIGHT]:
-            self.rot += PLAYER_ROT_SPEED * self.game.delta_time
-        self.rot %= 2 * math.tau # tau = 2 * pi
+        # player rotation with arrow keys
+        #if keys[pg.K_LEFT]:
+        #    self.angle -= PLAYER_ROT_SPEED * self.game.delta_time
+        #if keys[pg.K_RIGHT]:
+        #    self.angle += PLAYER_ROT_SPEED * self.game.delta_time
+        self.angle %= math.tau # tau = 2 * pi
     
     def check_wall(self, x, y):
         return (x, y) not in self.game.map.world_map
@@ -54,8 +54,8 @@ class Player:
     
     def draw(self):
         pg.draw.line(self.game.screen, 'green', (self.x * 100, self.y * 100),
-                     (self.x * 100 + WIDTH * math.cos(self.rot),
-                      self.y * 100 + WIDTH * math.sin(self.rot)), 2)
+                     (self.x * 100 + WIDTH * math.cos(self.angle),
+                      self.y * 100 + WIDTH * math.sin(self.angle)), 2)
         pg.draw.circle(self.game.screen, 'red', (self.x * 100, self.y * 100), 15)
     
     def mouse_control(self):
@@ -64,7 +64,7 @@ class Player:
             pg.mouse.set_pos([HALF_WIDTH, HALF_HEIGHT])
         self.rel = pg.mouse.get_rel()[0]
         self.rel = max(-MOUSE_MAX_SPEED, min(MOUSE_MAX_SPEED, self.rel))
-        self.rot += self.rel * MOUSE_SENSITIVITY * self.game.delta_time
+        self.angle += self.rel * MOUSE_SENSITIVITY * self.game.delta_time
     
     def update(self):
         self.movement()

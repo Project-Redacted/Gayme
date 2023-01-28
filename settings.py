@@ -4,12 +4,12 @@ import math
 RES = WIDTH, HEIGHT = 1600, 900
 HALF_WIDTH = WIDTH // 2
 HALF_HEIGHT = HEIGHT // 2
-FPS = 0 # 0 = unlimited
+FPS = 0             # 0 = unlimited
 
-PLAYER_POS = 1.5, 5 # player position on the map
+PLAYER_POS = 1.5, 5         # player position on the map
 PLAYER_ROT = 0
-PLAYER_SPEED = 0.004
-PLAYER_ROT_SPEED = 0.004
+PLAYER_SPEED = 0.002        # player speed
+PLAYER_ROT_SPEED = 0.004    # player rotation speed
 PLAYER_SIZE_SCALE = 60
 
 MOUSE_SENSITIVITY = 0.0003
@@ -31,3 +31,8 @@ SCALE = WIDTH // NUM_RAYS
 
 TEXTURE_SIZE = 256
 HALF_TEXTURE_SIZE = TEXTURE_SIZE // 2
+
+
+# DEBUG SETTINGS
+DEBUG_MODE = False  # show debug info
+FISH_EYE_FIX = True # fix fish eye effect
