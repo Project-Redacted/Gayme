@@ -28,7 +28,7 @@ class ObjectHandler:
         
         # NPC Map
         #add_npc(NPC(game))
-        add_npc(NPC(game, path=self.npc_sprite_path + 'baller/0.png', pos=(14.5, 5.5), scale=0.6, shift=0.38))
+        add_npc(NPC(game, path=self.npc_sprite_path + 'baller/0.png', pos=(5, 18), scale=0.6, shift=0.38))
         
         
     def update(self):

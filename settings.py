@@ -7,7 +7,7 @@ HALF_WIDTH = WIDTH // 2
 HALF_HEIGHT = HEIGHT // 2
 FPS = 0             # 0 = unlimited
 
-PLAYER_POS = 1.5, 5         # player position on the map
+PLAYER_POS = 5, 18         # player position on the map
 PLAYER_ROT = 0
 PLAYER_SPEED = 0.002        # player speed
 PLAYER_ROT_SPEED = 0.003    # player rotation speed
