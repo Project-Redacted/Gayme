@@ -91,7 +91,7 @@ class NPC(AnimatedSprite):
         # horizontal
         y_horz, dy = (y_map + 1, 1) if sin_a > 0 else (y_map - 1e-6, -1)
         
-        depth_horz = (y_horz - oy) / sin_a
+        depth_horz = ((y_horz - oy) / sin_a) + 0.0001
         x_horz = ox + depth_horz * cos_a
         
         delta_depth = dy / sin_a
